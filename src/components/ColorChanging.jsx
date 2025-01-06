@@ -17,7 +17,7 @@ const bgChanging = (ele) => {
    let textB = 255 - midB;
 
    // Apply animation styles
-   ele.style.animation = "gradientMove 2s ease-in-out forwards";
+   ele.style.animation = "gradientMove 5s ease-in-out forwards";
    ele.style.backgroundImage = `radial-gradient(circle at 0% 50%, rgb(${R1}, ${G1}, ${B1}), rgb(${R2}, ${G2}, ${B2}))`;
    ele.style.color = `rgb(${textR}, ${textG}, ${textB})`;
 
