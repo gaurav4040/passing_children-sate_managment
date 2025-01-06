@@ -10,19 +10,42 @@ function App() {
   
   
   let [foodItems,setFoodItems]=useState([]);
+
+  const addFoodItem = (value) => {
+    value = value.trim(); // Remove extra spaces
+    if (value === "") {
+      alert("Food item cannot be empty!");
+      return; // Prevent empty values
+    }
+    if (foodItems.includes(value)) {
+      alert(`${value} is already in the list!`);
+      return; // Prevent duplicates
+    }
+    setFoodItems((prevItems) => [...prevItems, value]);
+  
+  }
+ 
   // let [textToShow,setTextStateMethod]=useState("Food Item Entered by user");
 
   // instead of that we can also use this
   // let textStateArr=useState("Food Item Entered by user");
   // let textToShow=textStateArr[0];
   // let setTextStateMethod=textStateArr[1];
- 
- 
+  const onClickPress=(value)=>{
+    console.log(value);
+    // let newFoodItems=[...foodItems,value];
+    addFoodItem(value);
+  }
+  
   const onKeyDown=(event)=>{
+    console.log(event.target)
     if(event.key==='Enter'){
       console.log(event);
-      let newFoodItems = [...foodItems,event.target.value];
-      setFoodItems(newFoodItems);
+      // let newFoodItems = [...foodItems,event.target.value];
+      // setFoodItems(newFoodItems);
+      addFoodItem(event.target.value);
+      event.target.value="";
+
     }
   };
 
@@ -31,7 +54,7 @@ function App() {
       <center>
         <h1 className="foodHeading GH-span">Healthy Food</h1>
       </center>
-      <FoodInput handleKeyDown={onKeyDown} />
+      <FoodInput handleKeyDown={onKeyDown} handleClick={onClickPress} />
       <ErrorMessage  foodArray={foodItems} />
       <FoodItems foodArray={foodItems} />
     </Container>
